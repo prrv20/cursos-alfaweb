@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <h2>Cursos Disponibles</h2>
+        <h2>Lista de Cursos</h2>
     </v-container>
 </template>
 
