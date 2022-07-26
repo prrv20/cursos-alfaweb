@@ -17,7 +17,7 @@ export default new Vuex.Store({
         id : curso.id,
         codigo: curso.data().codigo,
         costo: curso.data().costo,
-        creado: curso.data().costo,
+        creado: curso.data().creado,
         cupos: curso.data().cupos,
         descripcion: curso.data().descripcion,
         duracion: curso.data().duracion,

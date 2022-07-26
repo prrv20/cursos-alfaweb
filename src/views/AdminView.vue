@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <H1>Administración</H1>
+        
         <admin></admin>
     </v-container>
 </template>
