@@ -10,6 +10,40 @@ export default new Vuex.Store({
     cursos:[]
   },
   getters: {
+    totalCursos(state){
+      return state.cursos.length
+    },
+    totalCupos(state){
+      return state.cursos.reduce((totalCup, cur) =>{
+        return totalCup + Number(cur.cupos)
+      },0)
+    },
+    totalInscritos(state){
+      return state.cursos.reduce((totalInsc, cur) =>{
+        return totalInsc + Number(cur.inscritos)
+      },0)
+    },
+    cursosActivos(state){
+      let activos = 0
+      state.cursos.forEach(c=>{
+        if(c.terminado == false){
+          activos ++
+        }
+      })
+      return activos
+    },
+    cursosTerminados(state){
+      let terminados = 0
+      state.cursos.forEach(c=>{
+        if(c.terminado){
+          terminados ++
+        }
+      })
+      return terminados
+    },
+    // cuposRestantes(state, getters){
+    //   return restantes = totalCup - totalInsc
+    // }
   },
   mutations: {
     ADD_CURSO(state, curso){
@@ -37,7 +71,6 @@ export default new Vuex.Store({
       let querySnapShot = await getDocs(collection(db, 'cursos'))
       commit('RESET_CURSO')
       querySnapShot.forEach((doc) => {
-        console.log(doc.id)
         commit('ADD_CURSO', doc)
       })
     }

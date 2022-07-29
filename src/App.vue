@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <nav-bar></nav-bar>
+    <nav-bar v-if="isPrivateRoute"></nav-bar>
     <v-main>
       <router-view/>
     </v-main>
@@ -11,7 +11,12 @@
 import NavBar from '@/components/NavBar.vue'
 export default {
   name: 'App',
-
+  computed:{
+    isPrivateRoute(){
+      if(this.$route.meta.private) return true
+      else return false
+    }
+  },
   data: () => ({
     //
   }),

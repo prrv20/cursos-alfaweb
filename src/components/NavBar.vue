@@ -6,7 +6,14 @@
                 <v-icon>mdi-desktop-classic</v-icon>
                 Cursos AlfaWeb
             </v-toolbar-title>
+            <v-spacer></v-spacer>
             
+                    <v-icon>mdi-account-outline</v-icon>
+                    <span class="mr-2">{{}}</span>
+            
+            <v-btn to="/user" text @click="logout">
+                    <v-icon>mdi-logout</v-icon>
+            </v-btn>
         </v-app-bar>
         <v-spacer></v-spacer>
         <v-navigation-drawer v-model="drawer" absolute temporary>
@@ -27,10 +34,12 @@
                 </v-list-item-group>
             </v-list>
         </v-navigation-drawer>
+        
   </div>
 </template>
 
 <script>
+import { getAuth, signOut } from "firebase/auth"
 export default {
   name: "navbar-comp",
   // props: {},
@@ -70,7 +79,18 @@ export default {
   methods: {
     redirectTo(nameRoute){
             this.$router.push({name:nameRoute})
-        }
+        },
+    logout(){
+        const auth = getAuth()
+        
+    signOut(auth)
+      .then(() => {
+        this.$router.push('/login')
+    })
+      .catch((error) => {
+        console.log(error)
+      })
+    }
   }
   // watch: {},
   // components: {},
@@ -78,7 +98,7 @@ export default {
   // filters: {},
   // -- Lifecycle Methods
   // -- End Lifecycle Methods
-};
+}
 </script>
 
 <style scoped>
