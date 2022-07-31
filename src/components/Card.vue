@@ -1,34 +1,52 @@
 <template>
-    <v-container>
-        <v-row justify="space-around">
-        <v-card width="400px">
-            <v-img height="220px" :src="curso.url_imagen">
-                
-            </v-img>
+  <v-container>
+      <v-row justify="space-around">
+          <v-card width="400px">
+            <v-img  height="200px" :src="curso.url_imagen"></v-img>
 
-            <v-card-text>
-            <div class="font-weight-bold ml-8 mb-2">
-                {{curso.nombre_curso}}
-            </div>
+            <v-card-text color="gray">
+              <div class="font-weight-bold ml-8 mb-2">
+                  {{curso.nombre_curso}}
+              </div>
 
-            <v-timeline align-top dense>
-                <v-timeline-item
-                v-for="message in messages"
-                :key="message.time"
-                :color="message.color"
-                small
-                >
-                <div>
-                    <div class="font-weight-normal">
-                        {{ message.from }}<strong>{{ curso.costo }}</strong> 
-                    </div>
-                    <div>{{ message.message }} {{curso.duracion}}</div>
-                </div>
-                </v-timeline-item>
-            </v-timeline>
+              <v-timeline align-top dense>
+                  <v-timeline-item color="deep-purple lighten-1" small>
+                  
+                      <div class="font-weight-normal">
+                          Costo:<strong>{{ curso.costo }}</strong> 
+                          <div>Duración: {{curso.duracion}}</div>
+                      </div>    
+                  
+                  </v-timeline-item>
+                  <v-timeline-item color="green" small>
+                  
+                      <div class="font-weight-normal">
+                          Cupos: <strong>{{ curso.cupos }}</strong> 
+                          <div>Completado: {{curso.terminado ? 'Si' : 'No'}}</div>
+                      </div>
+                      
+                  
+                  </v-timeline-item>
+                  <v-timeline-item color="deep-purple lighten-1" small>
+                 
+                      <div class="font-weight-normal">
+                          Fecha de Registro: 
+                          <div>{{curso.creado}}</div>
+                      </div>
+                      
+                  </v-timeline-item>
+                  <v-timeline-item color="green" small>
+                  <div>
+                      <div class="font-weight-normal">
+                          Descripción: 
+                      </div>
+                      <div>{{curso.descripcion}}</div>
+                  </div>
+                  </v-timeline-item>
+              </v-timeline>
             </v-card-text>
-        </v-card>
-    </v-row>
+          </v-card>
+      </v-row>
   </v-container>
 </template>
 
@@ -62,7 +80,7 @@ export default {
           from: 'Descripción:  ',
           message: 'Did you still want to grab lunch today?',
           time: '9:47am',
-          color: 'deep-purple lighten-1',
+          color: 'green',
         },
       ],
         }

@@ -9,7 +9,7 @@
             <v-spacer></v-spacer>
             
                     <v-icon>mdi-account-outline</v-icon>
-                    <span class="mr-2">{{}}</span>
+                    <span class="mr-2">{{email}}</span>
             
             <v-btn to="/user" text @click="logout">
                     <v-icon>mdi-logout</v-icon>
@@ -39,10 +39,11 @@
 </template>
 
 <script>
+import { mapGetters, mapState } from 'vuex'
 import { getAuth, signOut } from "firebase/auth"
 export default {
   name: "navbar-comp",
-  // props: {},
+  //props: ['getEmail'],
   data: function () {
     return {
         drawer: false,
@@ -72,9 +73,14 @@ export default {
     };
   },
   computed: {
+   ...mapGetters(['getEmail']),
+   ...mapState(['email']),
     currentRoute(){
             return this.$route.name
-        }
+        },
+
+       
+
   },
   methods: {
     redirectTo(nameRoute){
@@ -91,12 +97,13 @@ export default {
         console.log(error)
       })
     }
-  }
+  },
   // watch: {},
   // components: {},
   // mixins: [],
   // filters: {},
   // -- Lifecycle Methods
+  
   // -- End Lifecycle Methods
 }
 </script>

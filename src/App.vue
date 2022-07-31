@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { mapActions } from "vuex"
 import NavBar from '@/components/NavBar.vue'
 export default {
   name: 'App',
@@ -22,6 +24,18 @@ export default {
   }),
   components:{
     'nav-bar':NavBar
-  }
-};
+  },
+  methods:{
+    ...mapActions(['setEmail'])
+  },
+  created(){
+    const auth = getAuth()
+    onAuthStateChanged(auth, (user)=> {
+      if(user){
+        //llamar accion para guardar correo
+      this.setEmail(user.email)
+      }
+  })
+}
+}
 </script>

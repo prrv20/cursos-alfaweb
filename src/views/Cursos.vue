@@ -3,7 +3,7 @@
     <h2 class="text-center my-3">Lista de Cursos</h2>
     <v-container>
       <v-row justify="center">
-        <v-col class="pa-5" cols="12" sm="6" md="4" v-for="curso in cursos" :key="curso.id">
+        <v-col class="pa-2" cols="12" sm="6" md="4" v-for="curso in cursos" :key="curso.id">
           <card :curso="curso"></card>
         </v-col>
       </v-row>

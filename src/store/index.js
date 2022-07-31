@@ -3,11 +3,13 @@ import Vuex from 'vuex'
 import { db } from '@/firebase/firebase.js'
 import { collection, getDocs } from 'firebase/firestore'
 
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    cursos:[]
+    cursos:[],
+    email:''
   },
   getters: {
     totalCursos(state){
@@ -41,9 +43,7 @@ export default new Vuex.Store({
       })
       return terminados
     },
-    // cuposRestantes(state, getters){
-    //   return restantes = totalCup - totalInsc
-    // }
+    
   },
   mutations: {
     ADD_CURSO(state, curso){
@@ -63,6 +63,9 @@ export default new Vuex.Store({
     },
     RESET_CURSO(state){
       state.cursos = []
+    }, 
+    SET_EMAIL(state, email){
+      state.email = email
     }
 
   },
@@ -73,7 +76,11 @@ export default new Vuex.Store({
       querySnapShot.forEach((doc) => {
         commit('ADD_CURSO', doc)
       })
+    },
+    setEmail({commit}, email){
+      commit('SET_EMAIL', email)
     }
+    
 
   },
   modules: {

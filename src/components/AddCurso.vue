@@ -7,6 +7,7 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn color="primary" dark v-bind="attrs" v-on="on">
+          <v-icon>mdi-plus</v-icon>
           Agregar Curso
         </v-btn>
       </template>
@@ -39,7 +40,7 @@
             ></v-text-field>
             <v-text-field
             v-model="form.inscritos"
-            :rules="numberRules"
+            :rules="validCupos"
             label="Inscritos en el Curso"
             required
             ></v-text-field>
@@ -68,7 +69,7 @@
             label="Descripción del Curso"
             required
             ></v-textarea>
-            <v-btn depressed color="success" @click="guardar">
+            <v-btn class="mr-2" depressed color="success" @click="guardar">
               <v-icon dark left>mdi-checkbox-marked-circle</v-icon>
               Agregar
             </v-btn>
@@ -112,13 +113,32 @@ export default {
         numberRules:[
             v => !!v || 'Campo requerido', 
             v => /^[0-9]+$/.test(v) || 'Ingresa un Número válido',
-        ]
+        ],
+        // inscritosRules:[
+        //   v => /^[0-9]+$/.test(v) || 'Ingresa un Número válido',
+        //   v => (v || this.inscritos ) <= this.cuposMaximos||
+        //       `Sobrepasa la Capacidad del Curso`
+        // ]
         }
     },
-    // computed: {},
+    computed: {
+      cuposMaximos(){
+        let misCupos = this.form.cupos
+        return misCupos
+      }, 
+      validCupos(){
+        let expresion = /^[0-9]+$/
+        if( parseInt(this.form.inscritos) != expresion) 
+            return ["Ingresa un Numero Válido"]
+        else if(this.form.inscritos=="") 
+            return ["Campo Requerido"]
+        else if (parseInt(this.form.cupos) >= parseInt(this.form.inscritos)) return true
+            return ["Sobrepasa la Capacidad del Curso"]
+      }
+    },
     methods: {
         async guardar () {
-            //this.$refs.form.validate()//validar Formulario
+            
             if(!this.$refs.form.validate()) return //escapamos si no es valido el Formulario
             try {
                 this.form.creado = this.getFecha
@@ -143,7 +163,6 @@ export default {
     // mixins: [],
     // filters: {},
     // -- Lifecycle Methods
-    
     // -- End Lifecycle Methods
 }
 </script>

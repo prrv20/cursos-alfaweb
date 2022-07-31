@@ -65,7 +65,7 @@
             flat
             :label="`Terminado: ${form.terminado ? 'Si' : 'No'}` "
             ></v-switch>
-            <v-btn depressed color="success" @click="editCurso" class="mt-2">
+            <v-btn depressed color="success" @click="editCurso" class="mr-2">
               <v-icon dark left>mdi-checkbox-marked-circle</v-icon>
               Actualizar
             </v-btn>

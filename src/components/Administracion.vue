@@ -1,9 +1,10 @@
 <template>
     <v-container>
-          
+          <div class="d-flex">
             <H1 class="text-center">Administración</H1> 
+            <v-spacer></v-spacer>
             <add-curso :getFecha="fecha" class="my-3 text-end"></add-curso>
-          
+          </div>
         <v-simple-table>
           <template v-slot:default>
             <thead>
@@ -28,7 +29,11 @@
                     {{ curso.terminado ? 'Si' : 'No'}}
                   </v-chip>
                 </td>
-                <td>{{ curso.creado}}</td>
+                <td>
+                  <v-chip class="ma-2" color="green" text-color="white">
+                    {{ curso.creado}}
+                  </v-chip>
+                </td>
                 <td>
                   <v-btn class="mx-2" fab dark x-small color="cyan" @click="$router.push(`/curso/${curso.id}`)">
                       <v-icon dark>
@@ -106,7 +111,6 @@ export default {
         let mes = hoy.getMonth()
         let anio = hoy.getUTCFullYear()
         let fecha = dia + '-'+(mes+1)+'-'+anio
-        console.log(fecha)
         return fecha
       }
     },

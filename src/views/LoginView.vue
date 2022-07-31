@@ -80,7 +80,7 @@ export default {
 				.then((userCredential) => {
 					// Signed in
 					const user = userCredential.user
-                    console.log(user)
+                    console.log('Usuario del Login',user)
                     this.$router.push('/')
 					// ...
 				})
@@ -91,12 +91,20 @@ export default {
 
 				})
 		},
-    }
+		// getEmail(){
+		// 	let userEmail = this.email
+		// 	console.log('userEmail',userEmail)
+		// 	return userEmail	
+		// }
+    },
     // watch: {},
     // components: {},
     // mixins: [],
     // filters: {},
     // -- Lifecycle Methods
+	created(){
+		this.getEmail()
+	}
     // -- End Lifecycle Methods
 }
 </script>
