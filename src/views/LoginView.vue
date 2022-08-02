@@ -91,11 +91,6 @@ export default {
 
 				})
 		},
-		// getEmail(){
-		// 	let userEmail = this.email
-		// 	console.log('userEmail',userEmail)
-		// 	return userEmail	
-		// }
     },
     // watch: {},
     // components: {},

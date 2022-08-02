@@ -137,8 +137,6 @@ export default {
                 this.form.creado = this.getFecha
                 let response = await addDoc(collection(db, 'cursos'), this.form)
                 console.log(response)
-
-                //this.$router.push('/admin')
             
             } catch (error) {
                 console.log(error)

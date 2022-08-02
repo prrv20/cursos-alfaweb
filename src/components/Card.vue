@@ -61,10 +61,9 @@ export default {
         }
     },
      computed: {
-       // ...mapState(['cursos'])
      },
     methods: {
-       // ...mapActions(['fetchCursos'])
+       
     },
     // watch: {},
     // components: {},
