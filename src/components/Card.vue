@@ -57,32 +57,7 @@ export default {
     props: ['curso'],
     data: function(){
         return {
-            messages: [
-        {
-          from: 'Costo:  ',
-          message:'Duración: ',
-          time: '10:42am',
-          color: 'deep-purple lighten-1',
-        },
-        {
-          from: 'Cupos:  ',
-          message: 'Completado:  ',
-          time: '10:37am',
-          color: 'green',
-        },
-        {
-          from: 'Fecha Registro:  ',
-          message: 'Did you still want to grab lunch today?',
-          time: '9:48am',
-          color: 'deep-purple lighten-1',
-        },
-        {
-          from: 'Descripción:  ',
-          message: 'Did you still want to grab lunch today?',
-          time: '9:47am',
-          color: 'green',
-        },
-      ],
+            
         }
     },
      computed: {

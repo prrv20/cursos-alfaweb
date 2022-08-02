@@ -40,7 +40,7 @@
             ></v-text-field>
             <v-text-field
             v-model="form.inscritos"
-            :rules="validCupos"
+            :rules="inscritosRules"
             label="Inscritos en el Curso"
             required
             ></v-text-field>
@@ -114,11 +114,12 @@ export default {
             v => !!v || 'Campo requerido', 
             v => /^[0-9]+$/.test(v) || 'Ingresa un Número válido',
         ],
-        // inscritosRules:[
-        //   v => /^[0-9]+$/.test(v) || 'Ingresa un Número válido',
-        //   v => (v || this.inscritos ) <= this.cuposMaximos||
-        //       `Sobrepasa la Capacidad del Curso`
-        // ]
+        inscritosRules:[
+            v => !!v || 'Campo requerido', 
+            v => /^[0-9]+$/.test(v) || 'Ingresa un Número válido',
+            v => (v || parseInt(this.form.inscritos)) <= parseInt(this.cuposMaximos)||
+              `Sobrepasa la Capacidad del Curso`
+        ]
         }
     },
     computed: {
@@ -126,15 +127,7 @@ export default {
         let misCupos = this.form.cupos
         return misCupos
       }, 
-      validCupos(){
-        let expresion = /^[0-9]+$/
-        if( parseInt(this.form.inscritos) != expresion) 
-            return ["Ingresa un Numero Válido"]
-        else if(this.form.inscritos=="") 
-            return ["Campo Requerido"]
-        else if (parseInt(this.form.cupos) >= parseInt(this.form.inscritos)) return true
-            return ["Sobrepasa la Capacidad del Curso"]
-      }
+      
     },
     methods: {
         async guardar () {
